@@ -8,7 +8,8 @@
     "build": "npm run transpile && ng build && npx scully --scanRoutes && npx scully serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "copy-images": "node copy-images.js"
+    "copy-images": "node copy-images.js",
+    "postinstall": "apt-get update && apt-get install -y libxss1"
   },
   "private": true,
   "dependencies": {
@@ -46,6 +47,7 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "puppeteer": "^21.5.2",
     "typescript": "4.8.2"
   }
 }

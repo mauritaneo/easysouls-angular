@@ -18,7 +18,9 @@ export const config: ScullyConfig = {
   distFolder: './dist/easysouls',
   outDir: './dist/static',
   extraRoutes: ['/page/:path', '/post/:path'],
-  puppeteerLaunchOptions: { executablePath: '/opt/google/chrome/google-chrome' },
+  puppeteerLaunchOptions: {
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  },
   defaultPostRenderers: [baseHrefRewrite, Http404Plugin],
   routes: {
     '/': {
