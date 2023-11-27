@@ -19,7 +19,7 @@ exports.PagesAndPostsPlugin = 'pagesAndPostsPlugin';
 function pagesAndPostsPlugin() {
     return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
         const client = new ApolloClient({
-            uri: 'http://localhost/easysouls/graphql',
+            uri: 'https://4f93-82-53-138-169.ngrok-free.app/easysouls/graphql',
             cache: new InMemoryCache(),
             fetch: fetch,
         });
