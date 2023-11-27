@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { ScullyRoute, ScullyRoutesService } from '@scullyio/ng-lib';
+import { SharedService } from '../app/shared.service';
 import { map } from 'rxjs/operators';
 
 
@@ -28,7 +29,9 @@ export class AsideComponent implements OnInit {
   @Input() sidebarDisplay: string;
   @Input() asideGradient: string;
 
-  constructor(private scully: ScullyRoutesService) { }
+  constructor(
+    private scully: ScullyRoutesService,
+    private sharedService: SharedService) { }
 
   ngOnInit() {
     this.scully.available$.pipe(
@@ -55,9 +58,14 @@ export class AsideComponent implements OnInit {
 
   @HostBinding('style')
   get asideStyles() {
+    let gradientDirection = this.sharedService.asideGradient;
+    if (window.matchMedia('(max-width: 728px)').matches) {
+      gradientDirection = this.sharedService.asideGradient === 'right' ? 'left' : 'right';
+    }
+
     return {
-      'display': this.sidebarDisplay,
-      'background': `linear-gradient(to ${this.asideGradient}, rgba(15, 31, 38, .8) 0%, rgba(112, 72, 59, .8)), linear-gradient(to bottom, rgba(112, 72, 59, .8), rgba(61, 216, 233, .8))`
+      'display': this.sharedService.sidebarDisplay,
+      'background': `linear-gradient(to ${gradientDirection}, rgba(15, 31, 38, .8) 0%, rgba(112, 72, 59, .8)), linear-gradient(to bottom, rgba(112, 72, 59, .8), rgba(61, 216, 233, .8))`
     };
   }
 
