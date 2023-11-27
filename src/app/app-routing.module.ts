@@ -34,10 +34,16 @@ const routes: Routes = [
   {
     path: '404',
     component: NotFoundComponent,
+    resolve: {
+      blogData: () => inject(ResolveService).resolve()
+    }
   },
   {
     path: '**',
     component: NotFoundComponent,
+    resolve: {
+      blogData: () => inject(ResolveService).resolve()
+    }
   }
 ];
 
