@@ -31,13 +31,10 @@ export class AppComponent {
         this.isBlogPage = event.urlAfterRedirects === '/';
         this.isPage = event.urlAfterRedirects.startsWith('/page/');
         this.isPost = event.urlAfterRedirects.startsWith('/post/');
-        /* Test NotFoundComponent 
-        * this.isNotFound = event.urlAfterRedirects.startsWith('/404'); */
+        this.isNotFound = event.urlAfterRedirects.startsWith('/404');
+      } else if (event instanceof NavigationError) {
+        this.isNotFound = true;
       }
-      /* Test NotFoundComponent
-      * else if (event instanceof NavigationError) {
-      *  this.isNotFound = true;
-      } */
     });
   }
 
