@@ -46,13 +46,14 @@ export class NotFoundComponent implements OnInit {
       next: (route: ScullyRoute | undefined) => {
         if (!route) {
           console.log('No route found with route.route === "/shared"');
+          this.isLoading = false;
           return;
         }
+        console.log('Found route with route.route === "/shared"');
         this.sharedService.setProperties(route);
         this.isLoading = false;
       }
     });
-
   }
 
   @HostBinding('style')

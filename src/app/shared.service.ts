@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ScullyRoute, ScullyRoutesService } from '@scullyio/ng-lib';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,16 @@ export class SharedService {
   sidebarMobile: string;
 
   fetchData() {
-    this.scully.getCurrent().subscribe((route: ScullyRoute) => {
-      if (route.route === '/shared') {
+    this.scully.available$.pipe(
+      map((routes: ScullyRoute[]) => {
+        return routes.find((route: ScullyRoute) => route.route === '/shared');
+      })
+    ).subscribe({
+      next: (route: ScullyRoute | undefined) => {
+        if (!route) {
+          console.log('No route found with route.route === "/shared"');
+          return;
+        }
         this.setProperties(route);
       }
     });
