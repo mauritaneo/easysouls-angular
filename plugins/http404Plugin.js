@@ -16,9 +16,8 @@ const fs = require('fs');
 const http404Plugin = (html, route) => __awaiter(void 0, void 0, void 0, function* () {
     if (route.route === '/404') {
         const http404OutFile = path.join(scully_1.scullyConfig.outDir, '404.html');
-        fs.writeFileSync(http404OutFile, html, () => {
-            console.log(`Started @gammastream/scully-plugin-http404 -- saved 404.html`);
-        });
+        fs.writeFileSync(http404OutFile, html);
+        console.log(`Started @gammastream/scully-plugin-http404 -- saved 404.html`);
         return Promise.resolve(html);
     }
     else {

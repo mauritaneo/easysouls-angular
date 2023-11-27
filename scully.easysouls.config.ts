@@ -2,7 +2,6 @@
 import { ScullyConfig } from '@scullyio/scully';
 import { PagesAndPostsPlugin } from './plugins/pagesAndPostPlugin.js';
 import { baseHrefRewrite } from '@scullyio/scully-plugin-base-href-rewrite';
-import { getHttp404Plugin } from './plugins/http404Plugin.js';
 import '@scullyio/scully-plugin-puppeteer';
 import './plugins/netlifyPlugin.js';
 
@@ -10,8 +9,6 @@ import './plugins/netlifyPlugin.js';
 process.on('unhandledRejection', (reason, promise) => {
   console.log('Unhandled Rejection at:', promise, 'reason:', reason);
 });
-
-const Http404Plugin = getHttp404Plugin();
 
 export const config: ScullyConfig = {
   projectRoot: './',
@@ -22,31 +19,30 @@ export const config: ScullyConfig = {
   puppeteerLaunchOptions: {
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   },
-  defaultPostRenderers: [baseHrefRewrite, Http404Plugin, 'netlifyPlugin'],
+  defaultPostRenderers: [baseHrefRewrite, 'netlifyPlugin'],
   routes: {
     '/': {
       type: 'default',
     },
     '/page/:path': {
       type: PagesAndPostsPlugin,
-      postRenderers: [baseHrefRewrite, Http404Plugin],
+      postRenderers: [baseHrefRewrite],
       baseHref: '../../',
     },
     '/post/:path': {
       type: PagesAndPostsPlugin,
-      postRenderers: [baseHrefRewrite, Http404Plugin],
+      postRenderers: [baseHrefRewrite],
       baseHref: '../../',
     },
     '/shared': {
       type: PagesAndPostsPlugin,
-      postRenderers: [baseHrefRewrite, Http404Plugin],
+      postRenderers: [baseHrefRewrite],
       baseHref: '../../',
     },
-    /* Test NotFoundComponent
-    * '/404': {
-    *  type: 'default',
-    *  baseHref: '../',
-    *
-    * },  */
+    '/404': {
+      type: 'default',
+      baseHref: '../',
+      postRenderers: [baseHrefRewrite],
+    },
   }
 };
