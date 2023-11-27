@@ -1,0 +1,11 @@
+identifier: l3o621602ewd25bf
+appPort: 1864
+staticPort: 1668
+reloadPort: 2667
+hostName: localhost
+projectName: easysouls
+homeFolder: /home/alessandro/Desktop/easysoulsAngular/easysouls
+distFolder: ./dist/easysouls
+outDir: /home/alessandro/Desktop/easysoulsAngular/easysouls/dist/static
+handle404: ''
+allowErrorCollect: true

@@ -1,0 +1,26 @@
+<div class='pagination-links'>
+  <a *ngIf="currentPage > 1" class='prev page-numbers' (click)="onPageChange(currentPage - 1)">
+    « Prev
+  </a>
+
+  <ng-container *ngFor="let item of pageNumbers; index as i">
+    <span *ngIf="item.isActive" class='page-numbers current'>
+      {{item.pageNo}}
+    </span>
+
+    <ng-container *ngIf="!item.isActive">
+      <span *ngIf="item.pageNo === '...'" class='page-numbers dots'>
+        {{item.pageNo}}
+      </span>
+
+      <a *ngIf="item.pageNo !== '...' && isNumber(item.pageNo)" class='page-numbers'
+        (click)="onPageChange(item.pageNo)">
+        {{item.pageNo}}
+      </a>
+    </ng-container>
+  </ng-container>
+
+  <a *ngIf="currentPage < totalPages" class='next page-numbers' (click)="onPageChange(currentPage + 1)">
+    Next »
+  </a>
+</div>

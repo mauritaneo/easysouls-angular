@@ -1,0 +1,33 @@
+<div *ngIf="isLoading; else content">
+  Loading...
+</div>
+
+<ng-template #content>
+
+  <header class="banner"
+    [ngClass]="{'special-banner': sharedService.sidebarPosition === 'special', 'default-banner': sharedService.sidebarPosition !== 'special'}">
+    <a [routerLink]="'/'">
+      <img [src]="sharedService.bannerimage" alt="Easy Soul's banner: a mysterious warrior with a helm">
+    </a>
+  </header>
+
+  <app-aside [sidebarDisplay]="sharedService.sidebarDisplay" [asideGradient]="sharedService.asideGradient"></app-aside>
+
+  <nav class="menu">
+    <ul>
+      <li *ngFor="let item of sharedService.items">
+        <a [routerLink]="['/page' + item.url]" fragment="index">{{ item.label }}</a>
+      </li>
+    </ul>
+  </nav>
+
+  <main #index id="index" class="content">
+    <article>
+      <h1 *ngIf="postData">{{ postData.title }}</h1>
+      <div *ngIf="postData && postData.content" [innerHTML]="postData.content"></div>
+      <a class="pagehomelink" routerLink="/"><img src="images/home.png"></a>
+    </article>
+  </main>
+
+  <app-footer></app-footer>
+</ng-template>

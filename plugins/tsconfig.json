@@ -1,0 +1,38 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "importHelpers": false,
+    "lib": [
+      "es2015",
+      "dom",
+      "esnext.asynciterable"
+    ],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es2015",
+    "types": [
+      "node"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
+    "allowSyntheticDefaultImports": true
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "include": [
+    "./*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

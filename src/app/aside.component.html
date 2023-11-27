@@ -1,0 +1,9 @@
+<h1>{{ sidebarname }}</h1>
+<div class="aside-content">
+  <a *ngFor="let entry of asideEntries" href="{{ entry.link }}">
+    <p [ngClass]="entry.class">
+      <img *ngIf="entry.image" src="{{ entry.image }}" alt="Social media icon" />
+      <span *ngIf="entry.text">{{ entry.text }}</span>
+    </p>
+  </a>
+</div>
