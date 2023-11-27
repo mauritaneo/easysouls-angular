@@ -4,6 +4,7 @@ import { PagesAndPostsPlugin } from './plugins/pagesAndPostPlugin.js';
 import { baseHrefRewrite } from '@scullyio/scully-plugin-base-href-rewrite';
 import { getHttp404Plugin } from './plugins/http404Plugin.js';
 import '@scullyio/scully-plugin-puppeteer';
+import './plugins/netlifyPlugin.js';
 
 // Promise error handling
 process.on('unhandledRejection', (reason, promise) => {
@@ -21,7 +22,7 @@ export const config: ScullyConfig = {
   puppeteerLaunchOptions: {
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   },
-  defaultPostRenderers: [baseHrefRewrite, Http404Plugin],
+  defaultPostRenderers: [baseHrefRewrite, Http404Plugin, 'netlifyPlugin'],
   routes: {
     '/': {
       type: 'default',
