@@ -5,10 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "transpile": "npx tsc --project ./plugins/tsconfig.json",
-    "build": "npm run transpile && ng build && npx scully --scanRoutes && npx scully serve",
+    "build": "npm run transpile && ng build && npx scully --scanRoutes",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "copy-images": "node copy-images.js"
+    "copy-images": "node copy-images.js",
+    "serve": "npx scully serve"
   },
   "private": true,
   "dependencies": {
